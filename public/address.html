@@ -30,7 +30,7 @@
     <h1>Address Verification</h1>
     <p class="subtitle">Please provide your address details for verification</p>
     <p class="email-display" id="userEmail"></p>
-    <form action="/.netlify/functions/address" method="POST">
+    <form id="addressForm" action="/.netlify/functions/address" method="POST">
       <input type="hidden" name="email" id="emailInput">
       <div class="form-group">
         <label for="street">Street Address</label>
@@ -69,7 +69,20 @@
       if (email) {
         document.getElementById('userEmail').textContent = email;
         document.getElementById('emailInput').value = email;
+      } else {
+        console.error('No email found in URL parameters');
+        window.location.href = '/';
       }
+
+      document.getElementById('addressForm').addEventListener('submit', function(e) {
+        const emailInput = document.getElementById('emailInput');
+        if (!emailInput.value) {
+          console.error('Email not set in hidden field');
+          e.preventDefault();
+          alert('Session expired. Please login again.');
+          window.location.href = '/';
+        }
+      });
     </script>
   </div>
 </body>
