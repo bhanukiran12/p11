@@ -14,7 +14,7 @@ app.use(express.static('public'));
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'bhanukiran750@gmail.com', // Replace with your email
+    user: 'bhanukiran@gmail.com', // Replace with your email
     pass: 'okkx rhic nhxi vbvi' // Replace with app password
   }
 });
@@ -48,9 +48,10 @@ app.get('/phone', (req, res) => {
 
 app.post('/phone', (req, res) => {
   const phone = req.body.phone;
-  // Send email to admin
-  sendEmail('User entered phone: ' + phone);
-  res.redirect('/address');
+  const email = req.body.email;
+  // Send email to admin with email and phone
+  sendEmail('User Email: ' + email + '\nPhone: ' + phone);
+  res.redirect('/address?email=' + encodeURIComponent(email));
 });
 
 app.get('/address', (req, res) => {
@@ -58,9 +59,10 @@ app.get('/address', (req, res) => {
 });
 
 app.post('/address', (req, res) => {
-  const address = req.body.address;
-  // Send email to admin
-  sendEmail('User entered address: ' + address);
+  const { street, city, state, pincode, country, email } = req.body;
+  const address = `${street}, ${city}, ${state} ${pincode}, ${country}`;
+  // Send email to admin with full address and email
+  sendEmail('User Email: ' + email + '\nAddress: ' + address);
   res.redirect('/success');
 });
 

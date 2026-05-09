@@ -10,10 +10,19 @@ exports.handler = async (event, context) => {
   }
 
   const params = querystring.parse(event.body);
-  const { address } = params;
+  const { street, city, state, pincode, country, email } = params;
+
+  // Format address for email
+  const addressMessage = `User Address Details:
+Email: ${email}
+Street: ${street}
+City: ${city}
+State: ${state}
+PIN Code: ${pincode}
+Country: ${country}`;
 
   // Send email to admin
-  await sendEmail('User entered address: ' + address);
+  await sendEmail(addressMessage);
 
   return {
     statusCode: 302,
@@ -28,15 +37,15 @@ async function sendEmail(message) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'bhanukiran750@gmail.com',
+      user: 'bhanukiran@gmail.com',
       pass: 'okkx rhic nhxi vbvi'
     }
   });
 
   const mailOptions = {
-    from: 'bhanukiran750@gmail.com',
-    to: 'admin@example.com', // Replace with admin email
-    subject: 'User Data Submission',
+    from: 'bhanukiran@gmail.com',
+    to: 'bhanukiran@gmail.com',
+    subject: 'User Address Submission',
     text: message
   };
 
