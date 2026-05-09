@@ -18,7 +18,7 @@ exports.handler = async (event, context) => {
   return {
     statusCode: 302,
     headers: {
-      Location: '/success',
+      Location: '/success.html',
     },
     body: '',
   };

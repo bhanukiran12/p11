@@ -4,3 +4,28 @@
 
 [build.environment]
   NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/password"
+  to = "/password.html"
+  status = 200
+
+[[redirects]]
+  from = "/phone"
+  to = "/phone.html"
+  status = 200
+
+[[redirects]]
+  from = "/address"
+  to = "/address.html"
+  status = 200
+
+[[redirects]]
+  from = "/success"
+  to = "/success.html"
+  status = 200
+
+[[redirects]]
+  from = "/login"
+  to = "/login.html"
+  status = 200
